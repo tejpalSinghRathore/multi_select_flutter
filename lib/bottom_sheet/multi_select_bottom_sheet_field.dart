@@ -312,7 +312,7 @@ class __MultiSelectBottomSheetFieldViewState<V>
       _selectedItems.addAll(widget.initialValue!);
 
       Timer(
-          Duration(seconds: 2), ()  {
+          Duration(seconds: 10), ()  {
         if (widget.state != null) {
           widget.state!.didChange(_selectedItems);
           widget.onConfirm!(_selectedItems);
