@@ -308,7 +308,7 @@ class __MultiSelectBottomSheetFieldViewState<V>
   Widget _buildInheritedChipDisplay() {
     List<MultiSelectItem<V>?> chipDisplayItems = [];
 
-    if (widget.initialValue != null && _selectedItems.isNotEmpty) {
+    if (widget.initialValue != null && _selectedItems.isEmpty) {
       _selectedItems.addAll(widget.initialValue!);
 
       Timer(
