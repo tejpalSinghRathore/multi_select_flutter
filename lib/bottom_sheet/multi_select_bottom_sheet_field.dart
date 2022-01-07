@@ -4,6 +4,7 @@ import '../util/multi_select_list_type.dart';
 import '../chip_display/multi_select_chip_display.dart';
 import '../util/multi_select_item.dart';
 import 'multi_select_bottom_sheet.dart';
+import 'dart:async';
 
 /// A customizable InkWell widget that opens the MultiSelectBottomSheet
 // ignore: must_be_immutable
@@ -306,6 +307,22 @@ class __MultiSelectBottomSheetFieldViewState<V>
 
   Widget _buildInheritedChipDisplay() {
     List<MultiSelectItem<V>?> chipDisplayItems = [];
+
+    if (widget.initialValue != null && _selectedItems.isNotEmpty) {
+      _selectedItems.addAll(widget.initialValue!);
+
+      Timer(
+          Duration(seconds: 2), ()  {
+        if (widget.state != null) {
+          widget.state!.didChange(_selectedItems);
+          widget.onConfirm!(_selectedItems);
+        }
+      });
+
+
+
+    }
+
     chipDisplayItems = _selectedItems
         .map((e) => widget.items
             .firstWhereOrNull((element) => e == element.value))
